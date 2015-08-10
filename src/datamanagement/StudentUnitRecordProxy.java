@@ -22,7 +22,7 @@ public class StudentUnitRecordProxy
   {
     this.studentId_ = studentId;
     this.unitCode_ = unitCode;
-    this.manager_ = StudentUnitRecordManager.instance();
+    this.manager_ = StudentUnitRecordManager.getInstance();
   }
 
 
@@ -56,9 +56,9 @@ public class StudentUnitRecordProxy
    *
    * @param float of the mark awarded for the first assingment
    */
-  public void setAssignmentGrade1(float mark)
+  public void setAssignmentGrade1( float mark )
   {
-    manager_.getStudentUnitRecord( studentId_, unitCode_ ).setAsg1(mark);
+    manager_.getStudentUnitRecord( studentId_, unitCode_ ).setAsg1( mark );
   }
 
 
@@ -80,9 +80,9 @@ public class StudentUnitRecordProxy
    *
    * @param float of the mark awarded for the second assingment
    */
-  public void setAssignmentGrade2(float mark)
+  public void setAssignmentGrade2(  float mark)
   {
-    manager_.getStudentUnitRecord( studentId_, unitCode_ ).setAsg2(mark);
+    manager_.getStudentUnitRecord( studentId_, unitCode_ ).setAsg2( mark );
   }
 
 
@@ -104,9 +104,9 @@ public class StudentUnitRecordProxy
    *
    * @param float of the mark awarded for the exam
    */
-  public void setExamGrade(float mark)
+  public void setExamGrade( float mark )
   {
-    manager_.getStudentUnitRecord( studentId_, unitCode_ ).setExam(mark);
+    manager_.getStudentUnitRecord( studentId_, unitCode_ ).setExam( mark );
   }
 
 

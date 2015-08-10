@@ -29,7 +29,7 @@ public class XmlManager
    */
   public static XmlManager getInstance()
   {
-    if (self_ == null )
+    if (self_ == null)
       self_ = new XmlManager();
     return self_;
   }
