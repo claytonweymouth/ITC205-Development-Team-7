@@ -4,6 +4,9 @@ import java.util.List;
 
 import org.jdom.*;
 
+/**
+ *
+ */
 public class StudentUnitRecordManager
 {
   private static StudentUnitRecordManager s = null;
@@ -13,6 +16,9 @@ public class StudentUnitRecordManager
 
 
 
+  /**
+   *
+   */
   public static StudentUnitRecordManager instance()
   {
     if (s == null )
@@ -22,6 +28,9 @@ public class StudentUnitRecordManager
 
 
 
+  /**
+   *
+   */
   private StudentUnitRecordManager()
   {
     rm = new StudentUnitRecordMap();
@@ -31,6 +40,9 @@ public class StudentUnitRecordManager
 
 
 
+  /**
+   *
+   */
   public IStudentUnitRecord getStudentUnitRecord( Integer studentID, String unitCode )
   {
     IStudentUnitRecord ir = rm.get(studentID.toString()+unitCode);
@@ -39,6 +51,9 @@ public class StudentUnitRecordManager
 
 
 
+  /**
+   *
+   */
   private IStudentUnitRecord createStudentUnitRecord( Integer uid, String sid )
   {
     IStudentUnitRecord ir;
@@ -58,6 +73,9 @@ public class StudentUnitRecordManager
 
 
 
+  /**
+   *
+   */
   public StudentUnitRecordList getRecordsByUnit( String unitCode )
   {
     StudentUnitRecordList recs = ur.get(unitCode);
@@ -78,6 +96,9 @@ public class StudentUnitRecordManager
 
 
 
+  /**
+   *
+   */
   public StudentUnitRecordList getRecordsByStudent( Integer studentID )
   {
     StudentUnitRecordList recs = sr.get(studentID);
@@ -94,6 +115,9 @@ public class StudentUnitRecordManager
 
 
 
+  /**
+   *
+   */
   public void saveRecord( IStudentUnitRecord irec )
   {
     for (Element el : (List<Element>) XMLManager.getXML().getDocument().getRootElement().getChild("studentUnitRecordTable").getChildren("record")) {

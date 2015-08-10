@@ -25,7 +25,7 @@ public class XmlManager
    * one has not already been initialised.
    * Singleton pattern.
    *
-   * @return     XmlManager object
+   * @return XmlManager object instance
    */
   public static XmlManager getInstance()
   {
@@ -39,7 +39,6 @@ public class XmlManager
   /**
    * Constructor.
    * calls initialize().
-
    */
   private XmlManager()
   {
@@ -51,7 +50,7 @@ public class XmlManager
   /**
    * Initialises the document_ variable
    *
-   * @throws     RuntimeException
+   * @throws RuntimeException
    */
   public void initialize()
   {
@@ -76,7 +75,7 @@ public class XmlManager
   /**
    * Getter for the current Document
    *
-   * @return     Document object
+   * @return Document object
    */
   public Document getDocument()
   {
@@ -88,7 +87,7 @@ public class XmlManager
   /**
    * Saves the current Document
    *
-   * @throws     RuntimeException
+   * @throws RuntimeException
    */
   public void saveDocument()
   {

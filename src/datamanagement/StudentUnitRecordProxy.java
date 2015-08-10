@@ -1,82 +1,136 @@
 package datamanagement;
 
+/**
+ * Proxy class for StudentUnitRecordManager objects.
+ */
 public class StudentUnitRecordProxy
   implements IStudentUnitRecord
 {
-  private Integer studentID;
-  private String unitCode;
-  private StudentUnitRecordManager mngr;
+  private Integer studentId_;
+  private String unitCode_;
+  private StudentUnitRecordManager manager_;
 
 
 
-  public StudentUnitRecordProxy( Integer id, String code )
+  /**
+   * Constructor
+   *
+   * @param studentId Integer of the student's ID number
+   * @param unitCode String of the relevent unit code
+   */
+  public StudentUnitRecordProxy( Integer studentId, String unitCode )
   {
-    this.studentID = id;
-    this.unitCode = code;
-    this.mngr = StudentUnitRecordManager.instance();
+    this.studentId_ = studentId;
+    this.unitCode_ = unitCode;
+    this.manager_ = StudentUnitRecordManager.instance();
   }
 
 
 
-  public Integer getStudentID()
+  /**
+   *  Getter for studentId_
+   *
+   * @return Integer of the current student's ID.
+   */
+  public Integer getStudentId()
   {
-    return studentID;
+    return studentId_;
   }
 
 
 
+  /**
+   *  Getter for unitCode_
+   *
+   * @return String of the current Unit Code
+   */
   public String getUnitCode()
   {
-    return unitCode;
+    return unitCode_;
   }
 
 
 
-  public void setAsg1(float mark)
+  /**
+   * Setter (by proxy) for the grade of the first assignment
+   *
+   * @param float of the mark awarded for the first assingment
+   */
+  public void setAssignmentGrade1(float mark)
   {
-    mngr.getStudentUnitRecord( studentID, unitCode ).setAsg1(mark);
+    manager_.getStudentUnitRecord( studentId_, unitCode_ ).setAsg1(mark);
   }
 
 
 
-  public float getAsg1()
+  /**
+   * Getter (by proxy) for the grade of the first assignment
+   *
+   * @return float of the mark awarded for the first assingment
+   */
+  public float getAssignmentGrade1()
   {
-    return mngr.getStudentUnitRecord( studentID, unitCode ).getAsg1();
+    return manager_.getStudentUnitRecord( studentId_, unitCode_ ).getAsg1();
   }
 
 
 
-  public void setAsg2(float mark)
+  /**
+   * Setter (by proxy) for the grade of the second assignment
+   *
+   * @param float of the mark awarded for the second assingment
+   */
+  public void setAssignmentGrade2(float mark)
   {
-    mngr.getStudentUnitRecord( studentID, unitCode ).setAsg2(mark);
+    manager_.getStudentUnitRecord( studentId_, unitCode_ ).setAsg2(mark);
   }
 
 
 
-  public float getAsg2()
+  /**
+   * Getter (by proxy) for the grade of the second assignment
+   *
+   * @return float of the mark awarded for the second assingment
+   */
+  public float getAssignmentGrade2()
   {
-    return mngr.getStudentUnitRecord( studentID, unitCode ).getAsg2();
+    return manager_.getStudentUnitRecord( studentId_, unitCode_ ).getAsg2();
   }
 
 
 
-  public void setExam(float mark)
+  /**
+   * Setter (by proxy) for the grade of the exam
+   *
+   * @param float of the mark awarded for the exam
+   */
+  public void setExamGrade(float mark)
   {
-    mngr.getStudentUnitRecord( studentID, unitCode ).setExam(mark);
+    manager_.getStudentUnitRecord( studentId_, unitCode_ ).setExam(mark);
   }
 
 
 
-  public float getExam()
+  /**
+   * Getter (by proxy) for the grade of the exam
+   *
+   * @return float of the mark awarded for the exam
+   */
+  public float getExamGrade()
   {
-    return mngr.getStudentUnitRecord( studentID, unitCode ).getExam();
+    return manager_.getStudentUnitRecord( studentId_, unitCode_ ).getExam();
   }
 
 
 
-  public float getTotal()
+  /**
+   * Getter (by proxy) for the total grade
+   *
+   * @return float of the total mark awarded
+   */
+  public float getTotalGrade()
   {
-    return mngr.getStudentUnitRecord( studentID, unitCode ).getTotal();
+    return manager_.getStudentUnitRecord( studentId_, unitCode_ ).getTotal();
   }
 
 }
