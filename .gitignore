@@ -35,9 +35,14 @@ $RECYCLE.BIN/
 .Spotlight-V100
 .Trashes
 
+.project
+.classpath
+Properties.prop
+
 # Directories potentially created on remote AFP share
 .AppleDB
 .AppleDesktop
 Network Trash Folder
 Temporary Items
 .apdisk
+/bin/

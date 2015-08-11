@@ -1,67 +1,73 @@
 package datamanagement;
 
 public class StudentUnitRecord implements IStudentUnitRecord {
-	private Integer sid;
-	private String uc;
-	private float a1, a2, ex;
+  
+  private Integer studentId_;
+  private String unitCode_;
+  private float assessmentOneMark_, assessmentTwoMark_, examMark_;
 
-	public StudentUnitRecord(Integer id, String code, float asg1, float asg2,
-			float exam) {
-		this.sid = id;
-		this.uc = code;
-		this.setAsg1(asg1);
-		this.setAsg2(asg2);
-		this.setExam(exam);
+  public StudentUnitRecord(Integer studentId, String unitCode, float assessmentOneMark, 
+                           float assessmentTwoMark, float examMark) {
+    this.studentId_ = studentId;
+	this.unitCode_ = unitCode;
+	this.setAsg1(assessmentOneMark);
+	this.setAsg2(assessmentTwoMark);
+	this.setExam(examMark);
+  }
+
+  public Integer getStudentID() {
+    return this.studentId_;
+  }
+
+  public String getUnitCode() {
+    return this.unitCode_;
+  }
+
+  public void setAsg1(float assessmentOneMark) {
+	if (assessmentOneMark >= 0 &&
+		assessmentOneMark <= UnitManager.UM().getUnit(this.unitCode_).getAsg1Weight()) {
+	  this.assessmentOneMark_ = assessmentOneMark;  
 	}
-
-	public Integer getStudentID() {
-		return sid;
+	else {
+	  throw new RuntimeException("Mark cannot be less than zero or greater than assessment weight");
 	}
+  }
 
-	public String getUnitCode() {
-		return uc;
+  public float getAsg1() {
+	return this.assessmentOneMark_;
+  }
+
+  public void setAsg2(float assessmentTwoMark) {
+    if (assessmentTwoMark >= 0 &&
+		assessmentTwoMark <= UnitManager.UM().getUnit(this.unitCode_).getAsg2Weight()) {
+	  this.assessmentTwoMark_ = assessmentTwoMark;  
 	}
-
-	public void setAsg1(float a1) {
-		if (a1 < 0 ||
-			a1 > UnitManager.UM().getUnit(uc).getAsg1Weight()) {
-			throw new RuntimeException("Mark cannot be less than zero or greater than assessment weight");
-		}
-		this.a1 = a1;
+    else {
+	  throw new RuntimeException("Mark cannot be less than zero or greater than assessment weight");
 	}
+  }
 
-	public float getAsg1() {
 
-		return a1;
+  public float getAsg2() {
+    return this.assessmentTwoMark_;
+  }
+
+  public void setExam(float examMark) {
+    if (examMark >= 0 &&
+    	examMark <= UnitManager.UM().getUnit(this.unitCode_).getExamWeight()) {
+      this.examMark_ = examMark;
 	}
+    else {
+	  throw new RuntimeException("Mark cannot be less than zero or greater than assessment weight");
+    }
+  }
 
-	public void setAsg2(float a2) {
-		if (a2 < 0 ||
-			a2 > UnitManager.UM().getUnit(uc).getAsg2Weight()) {
-			throw new RuntimeException("Mark cannot be less than zero or greater than assessment weight");
-		}
-		this.a2 = a2;
+  public float getExam() {
+    return this.examMark_;
+  }
 
-	}
-
-	public float getAsg2() {
-		return a2;
-	}
-
-	public void setExam(float ex) {
-		if (ex < 0 ||
-				ex > UnitManager.UM().getUnit(uc).getExamWeight()) {
-				throw new RuntimeException("Mark cannot be less than zero or greater than assessment weight");
-			}
-		this.ex = ex;
-	}
-
-	public float getExam() {
-		return ex;
-	}
-
-	public float getTotal() {
-		return a1 + a2 + ex;
-
-	}
+  public float getTotal() {
+    return this.assessmentOneMark_ + this.assessmentTwoMark_ + this.examMark_;
+  }
+  
 }
