@@ -1,18 +1,18 @@
 package datamanagement;
 
 public class Student implements IStudent {
-    
+
   private Integer studentId_;
   private String studentFirstName_;
   private String studentLastName_;
   private StudentUnitRecordList studentUnitRecords_;
 
   public Student(Integer studentId, String studentFirstName, String studentLastName,
-		         StudentUnitRecordList studentUnitRecords) {
-	this.studentId_ = studentId;
-	this.studentFirstName_ = studentFirstName;
+                 StudentUnitRecordList studentUnitRecords) {
+    this.studentId_ = studentId;
+    this.studentFirstName_ = studentFirstName;
     this.studentLastName_ = studentLastName;
-    
+
     if (studentUnitRecords == null) {
       this.studentUnitRecords_ = new StudentUnitRecordList();
     }
@@ -56,7 +56,7 @@ public class Student implements IStudent {
   }
 
   public StudentUnitRecordList getUnitRecords() {
-	  return this.studentUnitRecords_;
+    return this.studentUnitRecords_;
   }
   
 }
