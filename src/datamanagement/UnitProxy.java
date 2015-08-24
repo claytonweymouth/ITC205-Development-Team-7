@@ -5,6 +5,13 @@ public class UnitProxy implements IUnit {
   private String unitName_;
   private UnitManager unitManager_;
 
+  /**
+   * Constructor - instantiates the class with class properties.
+   * 
+   * @param unitCode
+   * @param unitName
+   * @return UnitProxy
+   */
   public UnitProxy( String unitCode, String unitName ) {
     this.unitCode_ = unitCode;
     this.unitName_ = unitName;

@@ -5,6 +5,16 @@ public class StudentUnitRecord implements IStudentUnitRecord {
   private String unitCode_;
   private float assessmentOneMark_, assessmentTwoMark_, examMark_;
 
+  /**
+   * Constructor - instantiates the class with class properties.
+   * 
+   * @param studentId
+   * @param unitCode
+   * @param assessmentOneMark
+   * @param assessmentTwoMark
+   * @param examMark
+   * @return StudentUnitRecord
+   */
   public StudentUnitRecord(Integer studentId, String unitCode, float assessmentOneMark, 
                            float assessmentTwoMark, float examMark) {
     this.studentId_ = studentId;
@@ -22,6 +32,13 @@ public class StudentUnitRecord implements IStudentUnitRecord {
     return this.unitCode_;
   }
 
+  /**
+   * Sets the assessment one mark to the passed value.
+   * 
+   * @param assessmentOneMark
+   * @return void
+   * @throws RuntimeException
+   */
   public void setAsg1(float assessmentOneMark) {
     if (assessmentOneMark >= 0 &&
         assessmentOneMark <= UnitManager.UM().getUnit(this.unitCode_).getAsg1Weight()) {
@@ -36,6 +53,13 @@ public class StudentUnitRecord implements IStudentUnitRecord {
     return this.assessmentOneMark_;
   }
 
+  /**
+   * Sets the assessment two mark to the passed value.
+   * 
+   * @param assessmentTwoMark
+   * @return void
+   * @throws RuntimeException
+   */
   public void setAsg2(float assessmentTwoMark) {
     if (assessmentTwoMark >= 0 &&
         assessmentTwoMark <= UnitManager.UM().getUnit(this.unitCode_).getAsg2Weight()) {
@@ -50,6 +74,13 @@ public class StudentUnitRecord implements IStudentUnitRecord {
     return this.assessmentTwoMark_;
   }
 
+  /**
+   * Sets the exam mark to the passed value.
+   * 
+   * @param examMark
+   * @return void
+   * @throws RuntimeException
+   */
   public void setExam(float examMark) {
     if (examMark >= 0 &&
         examMark <= UnitManager.UM().getUnit(this.unitCode_).getExamWeight()) {

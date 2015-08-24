@@ -12,7 +12,23 @@ public class Unit implements IUnit {
   private int assessmentTwoWeight_;
   private int examWeight_;
   private StudentUnitRecordList studentUnitRecordList_;
-
+  
+  /**
+   * Constructor - instantiates the class with class properties.
+   * 
+   * @param unitCode
+   * @param unitName
+   * @param cutOffPass
+   * @param cutOffCredit
+   * @param cutOffDistinction
+   * @param cutOffHighDistinction
+   * @param cutOffAdditionalExam
+   * @param assessmentOneWeight
+   * @param assessmentTwoWeight
+   * @param examWeight
+   * @param studentUnitRecordList
+   * @return Unit
+   */
   public Unit(String unitCode, String unitName, float cutOffPass, float cutOffCredit,
               float cutOffDistinction, float cutOffHighDistinction, float cutOffAdditionalExam,
               int assessmentOneWeight, int assessmentTwoWeight, int examWeight, StudentUnitRecordList studentUnitRecordList) {
@@ -114,6 +130,15 @@ public class Unit implements IUnit {
     return this.examWeight_;
   }
 
+  /**
+   * Sets the assessment weights.
+   * 
+   * @param assessmentOneWeight
+   * @param assessmentTwoWeight
+   * @param examWeight
+   * @return void
+   * @throws RuntimeException
+   */
   @Override
   public void setAssessmentWeights(int assessmentOneWeight, int assessmentTwoWeight, int examWeight) {
     if (assessmentOneWeight < 0 || assessmentOneWeight > 100 ||
@@ -132,6 +157,17 @@ public class Unit implements IUnit {
 
   }
 
+  /**
+   * Sets the grade cutoff thresholds.
+   * 
+   * @param cutOffPass
+   * @param cutOffCredit
+   * @param cutOffDistinction
+   * @param cutOffHighDistinction
+   * @param cutOffAdditionalExam
+   * @return void
+   * @throws RuntimeException
+   */
   private void setCutoffs( float cutOffPass, float cutOffCredit, float cutOffDistinction, float cutOffHighDistinction, float cutOffAdditionalExam) {
     if (cutOffPass < 0 || cutOffPass > 100 ||
         cutOffCredit < 0 || cutOffCredit > 100 ||
@@ -155,6 +191,16 @@ public class Unit implements IUnit {
 
   }
 
+  /**
+   * Gives a two character grade code for the given assessment
+   * and exam marks.
+   * 
+   * @param assessmentOneMark
+   * @param assessmentTwoMark
+   * @param examMark
+   * @return String
+   * @throws RuntimeException
+   */
   public String getGrade(float assessmentOneMark, float assessmentTwoMark, float examMark) {
     float totalMark = assessmentOneMark + assessmentTwoMark + examMark;
 

@@ -7,6 +7,15 @@ public class Student implements IStudent {
   private String studentLastName_;
   private StudentUnitRecordList studentUnitRecords_;
 
+  /**
+   * Constructor - instantiates the class with class properties.
+   * 
+   * @param studentId
+   * @param studentFirstName
+   * @param studentLastName
+   * @param studentUnitRecords
+   * @return Student
+   */
   public Student(Integer studentId, String studentFirstName, String studentLastName,
                  StudentUnitRecordList studentUnitRecords) {
     this.studentId_ = studentId;
