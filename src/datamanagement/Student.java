@@ -1,11 +1,15 @@
 package datamanagement;
 
+/**
+ * Class for the Student entity
+ */
 public class Student implements IStudent {
-
   private Integer studentId_;
   private String studentFirstName_;
   private String studentLastName_;
   private StudentUnitRecordList studentUnitRecords_;
+
+
 
   /**
    * Constructor - instantiates the class with class properties.
@@ -31,30 +35,44 @@ public class Student implements IStudent {
     
   }
 
+
+
   public Integer getID() {
     return this.studentId_; 
   }
-  
+
+
+
   public String getFirstName() { 
     return this.studentFirstName_;
   }
+
+
 
   public void setFirstName(String studentFirstName) { 
     this.studentFirstName_ = studentFirstName;
   }
 
+
+
   public String getLastName() { 
     return this.studentLastName_;
   }
-  
+
+
+
   public void setLastName(String studentLastName) {
     this.studentLastName_ = studentLastName;
   }
 
+
+
   public void addUnitRecord(IStudentUnitRecord studentUnitRecord) {
     this.studentUnitRecords_.add(studentUnitRecord);
   }
-        
+
+
+
   public IStudentUnitRecord getUnitRecord(String unitCode) {
     for (IStudentUnitRecord studentUnitRecord : this.studentUnitRecords_) {
       if (studentUnitRecord.getUnitCode().equals(unitCode)) {
@@ -64,8 +82,12 @@ public class Student implements IStudent {
     return null;       
   }
 
+
+
   public StudentUnitRecordList getUnitRecords() {
     return this.studentUnitRecords_;
   }
+
+
   
 }

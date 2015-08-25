@@ -1,5 +1,8 @@
 package datamanagement;
 
+/**
+ * Methods enforced in student entity classes.
+ */
 public interface IStudent {
 
   public Integer getID();

@@ -1,9 +1,15 @@
 package datamanagement;
 
+/**
+ * An entity for holding information about a students marks
+ * for a given unit.
+ */
 public class StudentUnitRecord implements IStudentUnitRecord {
   private Integer studentId_;
   private String unitCode_;
   private float assessmentOneMark_, assessmentTwoMark_, examMark_;
+
+
 
   /**
    * Constructor - instantiates the class with class properties.
@@ -24,13 +30,19 @@ public class StudentUnitRecord implements IStudentUnitRecord {
     this.setExam(examMark);
   }
 
+
+
   public Integer getStudentID() {
     return this.studentId_;
   }
 
+
+
   public String getUnitCode() {
     return this.unitCode_;
   }
+
+
 
   /**
    * Sets the assessment one mark to the passed value.
@@ -49,9 +61,13 @@ public class StudentUnitRecord implements IStudentUnitRecord {
     }
   }
 
+
+
   public float getAsg1() {
     return this.assessmentOneMark_;
   }
+
+
 
   /**
    * Sets the assessment two mark to the passed value.
@@ -70,9 +86,13 @@ public class StudentUnitRecord implements IStudentUnitRecord {
     }
   }
 
+
+
   public float getAsg2() {
     return this.assessmentTwoMark_;
   }
+
+
 
   /**
    * Sets the exam mark to the passed value.
@@ -91,12 +111,18 @@ public class StudentUnitRecord implements IStudentUnitRecord {
     }
   }
 
+
+
   public float getExam() {
     return this.examMark_;
   }
 
+
+
   public float getTotal() {
     return this.assessmentOneMark_ + this.assessmentTwoMark_ + this.examMark_;
   }
+
+
 
 }

@@ -1,5 +1,8 @@
 package datamanagement;
 
+/**
+ * An entity representing a unit.
+ */
 public class Unit implements IUnit {
   private String unitCode_;
   private String unitName_;
@@ -12,7 +15,9 @@ public class Unit implements IUnit {
   private int assessmentTwoWeight_;
   private int examWeight_;
   private StudentUnitRecordList studentUnitRecordList_;
-  
+
+
+
   /**
    * Constructor - instantiates the class with class properties.
    * 
@@ -50,57 +55,121 @@ public class Unit implements IUnit {
     
   }
 
+
+
   public String getUnitCode() {
     return this.unitCode_;
   }
+
+
 
   public String getUnitName() {
     return this.unitName_;
   }
 
+
+
+  /**
+   * Sets the pass cut-off mark for the unit.
+   * 
+   * @param cutOffPass
+   * @return void
+   */
   public void setPsCutoff(float cutOffPass) {
     this.cutOffPass_ = cutOffPass;
   }
+
+
 
   public float getPsCutoff() {
     return this.cutOffPass_;
   }
 
+
+
+  /**
+   * Sets the credit cut-off mark for the unit.
+   * 
+   * @param cutOffCredit
+   * @return void
+   */
   public void setCrCutoff(float cutOffCredit) {
     this.cutOffCredit_ = cutOffCredit;
   }
+
+
 
   public float getCrCutoff() {
     return this.cutOffCredit_;
   }
 
+
+
+  /**
+   * Sets the distinction cut-off mark for the unit.
+   * 
+   * @param cutOffDistinction
+   * @return void
+   */
   public void setDiCutoff(float cutOffDistinction) {
     this.cutOffDistinction_ = cutOffDistinction;
   }
+
+
 
   public float getDiCutoff() {
     return this.cutOffDistinction_;
   }
 
+
+
+  /**
+   * Sets the high distinction cut-off mark for the unit.
+   * 
+   * @param cutOffHighDistinction
+   * @return void
+   */
   public void setHdCutoff(float cutOffHighDistinction) {
     this.cutOffHighDistinction_ = cutOffHighDistinction;
   }
+
+
 
   public float getHdCutoff() {
     return this.cutOffHighDistinction_;
   }
 
+
+
+  /**
+   * Sets the additional exam cut-off mark for the unit.
+   * 
+   * @param cutOffAdditionalExam
+   * @return void
+   */
   public void setAeCutoff(float cutOffAdditionalExam) {
     this.cutOffAdditionalExam_ = cutOffAdditionalExam;
   }
+
+
 
   public float getAeCutoff() {
     return this.cutOffAdditionalExam_;
   }
 
+
+
+  /**
+   * Adds a StudentUnitRecord to the unit.
+   * 
+   * @param studentUnitRecord
+   * @return void
+   */
   public void addStudentRecord(IStudentUnitRecord studentUnitRecord) {
     this.studentUnitRecordList_.add(studentUnitRecord);
   }
+
+
 
   public IStudentUnitRecord getStudentRecord(int studentId) {
     for (IStudentUnitRecord studentUnitRecord : this.studentUnitRecordList_) {
@@ -111,24 +180,34 @@ public class Unit implements IUnit {
     return null;
   }
 
+
+
   public StudentUnitRecordList listStudentRecords() {
     return this.studentUnitRecordList_;
   }
+
+
 
   @Override
   public int getAsg1Weight() {
     return this.assessmentOneWeight_;
   }
 
+
+
   @Override
   public int getAsg2Weight() {
     return this.assessmentTwoWeight_;
   }
 
+
+
   @Override
   public int getExamWeight() {
     return this.examWeight_;
   }
+
+
 
   /**
    * Sets the assessment weights.
@@ -156,6 +235,8 @@ public class Unit implements IUnit {
     this.examWeight_ = examWeight;
 
   }
+
+
 
   /**
    * Sets the grade cutoff thresholds.
@@ -190,6 +271,8 @@ public class Unit implements IUnit {
     }
 
   }
+
+
 
   /**
    * Gives a two character grade code for the given assessment
@@ -230,5 +313,7 @@ public class Unit implements IUnit {
     }
 
   }
+
+
 
 }
