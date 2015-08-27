@@ -6,12 +6,12 @@ public interface IUnit {
     public String getUnitName();
 
     public float getPsCutoff();
-    public void  setPsCutoff1(float cutoff);
+    public void  setPsCutoff(float cutoff);
 
     public float getCrCutoff();
     public void  setCrCutoff(float cutoff);
 
-    public float getDiCuttoff();    
+    public float getDiCutoff();    
     public void  setDiCutoff(float cutoff);
 
     public float getHdCutoff();
