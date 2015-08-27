@@ -13,7 +13,7 @@ public class StudentUnitRecord implements IStudentUnitRecord {
 
   /**
    * Constructor - instantiates the class with class properties.
-   * 
+   *
    * @param studentId
    * @param unitCode
    * @param assessmentOneMark
@@ -21,13 +21,13 @@ public class StudentUnitRecord implements IStudentUnitRecord {
    * @param examMark
    * @return StudentUnitRecord
    */
-  public StudentUnitRecord(Integer studentId, String unitCode, float assessmentOneMark, 
+  public StudentUnitRecord(Integer studentId, String unitCode, float assessmentOneMark,
                            float assessmentTwoMark, float examMark) {
     this.studentId_ = studentId;
     this.unitCode_ = unitCode;
-    this.setAsg1(assessmentOneMark);
-    this.setAsg2(assessmentTwoMark);
-    this.setExam(examMark);
+    this.setAssignmentGrade1(assessmentOneMark);
+    this.setAssignmentGrade2(assessmentTwoMark);
+    this.setExamGrade(examMark);
   }
 
 
@@ -46,15 +46,15 @@ public class StudentUnitRecord implements IStudentUnitRecord {
 
   /**
    * Sets the assessment one mark to the passed value.
-   * 
+   *
    * @param assessmentOneMark
    * @return void
    * @throws RuntimeException
    */
-  public void setAsg1(float assessmentOneMark) {
+  public void setAssignmentGrade1(float assessmentOneMark) {
     if (assessmentOneMark >= 0 &&
         assessmentOneMark <= UnitManager.UM().getUnit(this.unitCode_).getAsg1Weight()) {
-      this.assessmentOneMark_ = assessmentOneMark;  
+      this.assessmentOneMark_ = assessmentOneMark;
     }
     else {
       throw new RuntimeException("Mark cannot be less than zero or greater than assessment weight");
@@ -63,7 +63,7 @@ public class StudentUnitRecord implements IStudentUnitRecord {
 
 
 
-  public float getAsg1() {
+  public float getAssignmentGrade1() {
     return this.assessmentOneMark_;
   }
 
@@ -71,15 +71,15 @@ public class StudentUnitRecord implements IStudentUnitRecord {
 
   /**
    * Sets the assessment two mark to the passed value.
-   * 
+   *
    * @param assessmentTwoMark
    * @return void
    * @throws RuntimeException
    */
-  public void setAsg2(float assessmentTwoMark) {
+  public void setAssignmentGrade2(float assessmentTwoMark) {
     if (assessmentTwoMark >= 0 &&
         assessmentTwoMark <= UnitManager.UM().getUnit(this.unitCode_).getAsg2Weight()) {
-      this.assessmentTwoMark_ = assessmentTwoMark;  
+      this.assessmentTwoMark_ = assessmentTwoMark;
     }
     else {
       throw new RuntimeException("Mark cannot be less than zero or greater than assessment weight");
@@ -88,7 +88,7 @@ public class StudentUnitRecord implements IStudentUnitRecord {
 
 
 
-  public float getAsg2() {
+  public float getAssignmentGrade2() {
     return this.assessmentTwoMark_;
   }
 
@@ -96,12 +96,12 @@ public class StudentUnitRecord implements IStudentUnitRecord {
 
   /**
    * Sets the exam mark to the passed value.
-   * 
+   *
    * @param examMark
    * @return void
    * @throws RuntimeException
    */
-  public void setExam(float examMark) {
+  public void setExamGrade(float examMark) {
     if (examMark >= 0 &&
         examMark <= UnitManager.UM().getUnit(this.unitCode_).getExamWeight()) {
       this.examMark_ = examMark;
@@ -113,13 +113,13 @@ public class StudentUnitRecord implements IStudentUnitRecord {
 
 
 
-  public float getExam() {
+  public float getExamGrade() {
     return this.examMark_;
   }
 
 
 
-  public float getTotal() {
+  public float getTotalGrade() {
     return this.assessmentOneMark_ + this.assessmentTwoMark_ + this.examMark_;
   }
 

@@ -1,83 +1,159 @@
 package datamanagement;
 
 import java.util.List;
-import org.jdom.*;
+import java.util.HashMap;
 
-public class StudentUnitRecordManager {
+import org.jdom.Element; // Was wildcard, may be other imports needed?
 
-private static StudentUnitRecordManager s = null;
-            private StudentUnitRecordMap rm;
-    private java.util.HashMap<String,StudentUnitRecordList> ur;
-private java.util.HashMap<Integer,StudentUnitRecordList> sr;
-    public static StudentUnitRecordManager instance() {
-        if (s == null ) s = new StudentUnitRecordManager(); return s;}
-            private StudentUnitRecordManager() {
-        rm = new StudentUnitRecordMap();
-    ur = new java.util.HashMap<>();
-    sr = new java.util.HashMap<>();}
-    public IStudentUnitRecord getStudentUnitRecord( Integer studentID, String unitCode ) {
-IStudentUnitRecord ir = rm.get(studentID.toString()+unitCode);
-return ir != null ? ir : createStudentUnitRecord(studentID, unitCode);}
 
-    private IStudentUnitRecord createStudentUnitRecord( Integer uid, String sid ) {
-        IStudentUnitRecord ir;
-        for (Element el : (List<Element>) XMLManager.getXML().getDocument().getRootElement().getChild("studentUnitRecordTable").getChildren("record")) {
-        if (uid.toString().equals(el.getAttributeValue("sid")) && sid.equals(el.getAttributeValue("uid"))) {
-                ir = new StudentUnitRecord( new Integer(el.getAttributeValue("sid")),el.getAttributeValue("uid"),new Float(el.getAttributeValue("asg1")).floatValue(),new Float(el.getAttributeValue("asg2")).floatValue(),new Float(el.getAttributeValue("exam")).floatValue() );
-               rm.put(ir.getStudentID().toString()+ir.getUnitCode(), ir);return ir;
-}
-}
-throw new RuntimeException("DBMD: createStudent : student unit record not in file");}
-        public StudentUnitRecordList getRecordsByUnit( String unitCode ) {
-    StudentUnitRecordList recs = ur.get(unitCode);
-    if ( recs != null ) return recs; 
-        recs = new StudentUnitRecordList();
-        for (Element el : (List<Element>) XMLManager.getXML().getDocument().getRootElement().getChild("studentUnitRecordTable").getChildren("record")) {
-    if (unitCode.equals(el.getAttributeValue("uid"))) recs.add(new StudentUnitRecordProxy( new Integer(el.getAttributeValue("sid")), el.getAttributeValue("uid")));
-        }
-        if ( recs.size() > 0 ) 
-            ur.put(unitCode, recs); // be careful - this could be empty
-            return recs;
-        }
 
-public StudentUnitRecordList getRecordsByStudent( Integer studentID ) {
-    StudentUnitRecordList recs = sr.get(studentID);
-    if ( recs != null ) return recs; recs = new StudentUnitRecordList();
-        for (Element el : (List<Element>) XMLManager.getXML().getDocument().getRootElement().getChild("studentUnitRecordTable").getChildren("record")) 
-            if (studentID.toString().equals(el.getAttributeValue("sid"))) 
-                recs.add(new StudentUnitRecordProxy( new Integer(el.getAttributeValue("sid")), el.getAttributeValue("uid")));
-                if ( recs.size() > 0 ) 
-                    sr.put(studentID, recs); // be careful - this could be empty
-                        return recs;
+/**
+ * Manager class for Student Unit Records.
+ */
+public class StudentUnitRecordManager
+{
+  private static StudentUnitRecordManager studentUnitRecordManager_ = null;
+  private StudentUnitRecordMap recordMap_;
+  private HashMap<String,StudentUnitRecordList> unitCodeHashMap_;
+  private HashMap<Integer,StudentUnitRecordList> studentIdHashMap_;
+
+
+
+  /**
+   * Getter for the current StudentUnitRecordManager_ object.
+   * Initialises a new StudentUnitRecordManager object if
+   * one has not already been initialised.
+   * Singleton pattern.
+   *
+   * @return StudentUnitRecordManager object instance
+   */
+  public static StudentUnitRecordManager getInstance()
+  {
+    if (studentUnitRecordManager_ == null )
+      studentUnitRecordManager_ = new StudentUnitRecordManager();
+    return studentUnitRecordManager_;
+  }
+
+
+
+  /**
+   * Constructor
+   */
+  private StudentUnitRecordManager()
+  {
+    recordMap_ = new StudentUnitRecordMap();
+    unitCodeHashMap_ = new HashMap<>();
+    studentIdHashMap_ = new HashMap<>();
+  }
+
+
+
+  /**
+   *  Getter for student unit records.
+   *
+   * @return IStudentUnitRecord conforming object
+   */
+  public IStudentUnitRecord getStudentUnitRecord( Integer studentID, String unitCode )
+  {
+    IStudentUnitRecord studentRecord = recordMap_.get(studentID.toString()+unitCode);
+    return studentRecord != null ? studentRecord : createStudentUnitRecord(studentID, unitCode);
+  }
+
+
+
+  /**
+   *  Creates an IStudentUnitRecord conforming object
+   *
+   * @param Integer object of the Unit Code of the new object
+   * @param String object of the Student ID of the new object
+   * @throws RuntimeException
+   * @return IStudentUnitRecord conforming object
+   */
+  private IStudentUnitRecord createStudentUnitRecord( Integer unitCode, String studentId )
+  {
+    IStudentUnitRecord studentRecord;
+    for (Element element : (List<Element>) XmlManager.getInstance().getDocument().getRootElement().getChild("studentUnitRecordTable").getChildren("record")) {
+      if (unitCode.toString().equals(element.getAttributeValue("sid")) && studentId.equals(element.getAttributeValue("uid"))) {
+        studentRecord = new StudentUnitRecord( new Integer(element.getAttributeValue("sid")),
+                                    element.getAttributeValue("uid"),
+                                    new Float(element.getAttributeValue("asg1")).floatValue(),
+                                    new Float(element.getAttributeValue("asg2")).floatValue(),
+                                    new Float(element.getAttributeValue("exam")).floatValue() );
+        recordMap_.put(studentRecord.getStudentID().toString()+studentRecord.getUnitCode(), studentRecord);
+        return studentRecord;
+      }
     }
+    throw new RuntimeException("DBMD: createStudent : student unit record not in file");
+  }
 
-    public void saveRecord( IStudentUnitRecord irec ) {
-        for (Element el : (List<Element>) XMLManager.getXML().getDocument().getRootElement().getChild("studentUnitRecordTable").getChildren("record")) {
-            if (irec.getStudentID().toString().equals(el.getAttributeValue("sid")) && irec.getUnitCode().equals(el.getAttributeValue("uid"))) {
-                el.setAttribute("asg1", new Float(irec.getAsg1()).toString());
-                
-                
-                
-        el.setAttribute("asg2", new Float(irec.getAsg2()).toString());
-        el.setAttribute("exam", new Float(irec.getExam()).toString());
-        XMLManager.getXML().saveDocument(); //write out the XML file for continuous save
+
+
+  /**
+   * Gets a list of record by Unit Code.
+   *
+   * @param String of the relevent unit code.
+   * @return StudentUnitRecordList object.
+   */
+  public StudentUnitRecordList getRecordsByUnit( String unitCode )
+  {
+    StudentUnitRecordList records = unitCodeHashMap_.get(unitCode);
+    if ( records != null )
+      return records;
+    records = new StudentUnitRecordList();
+    for (Element element : (List<Element>) XmlManager.getInstance().getDocument().getRootElement().getChild("studentUnitRecordTable").getChildren("record")) {
+      if (unitCode.equals(element.getAttributeValue("uid")))
+        records.add(new StudentUnitRecordProxy(
+          new Integer(element.getAttributeValue("sid")),
+          element.getAttributeValue("uid"))
+        );
+    }
+    if ( records.size() > 0 )
+      unitCodeHashMap_.put(unitCode, records); // be careful - this could be empty
+    return records;
+  }
+
+
+
+  /**
+   * Gets a list of records by Student Id.
+   *
+   * @param Integer of the relevent student id.
+   * @return StudentUnitRecordList object.
+   */
+  public StudentUnitRecordList getRecordsByStudent( Integer studentID )
+  {
+    StudentUnitRecordList records = studentIdHashMap_.get(studentID);
+    if ( records != null )
+      return records;
+    records = new StudentUnitRecordList();
+    for (Element element : (List<Element>)   XmlManager.getInstance().getDocument().getRootElement().getChild("studentUnitRecordTable").getChildren("record"))
+      if (studentID.toString().equals(element.getAttributeValue("sid")))
+        records.add(new StudentUnitRecordProxy( new Integer(element.getAttributeValue("sid")), element.getAttributeValue("uid")));
+    if ( records.size() > 0 )
+      studentIdHashMap_.put(studentID, records); // be careful - this could be empty
+    return records;
+  }
+
+
+
+  /**
+   * Saves a record to an XML file
+   *
+   * @param IStudentUnitRecord conforming object
+   * @throws RuntimeException
+   */
+  public void saveRecord( IStudentUnitRecord record )
+  {
+    for (Element element : (List<Element>) XmlManager.getInstance().getDocument().getRootElement().getChild("studentUnitRecordTable").getChildren("record")) {
+      if (record.getStudentID().toString().equals(element.getAttributeValue("sid")) && record.getUnitCode().equals(element.getAttributeValue("uid"))) {
+        element.setAttribute("asg1", new Float(record.getAssignmentGrade1()).toString());
+        element.setAttribute("asg2", new Float(record.getAssignmentGrade2()).toString());
+        element.setAttribute("exam", new Float(record.getExamGrade()).toString());
+        XmlManager.getInstance().saveDocument(); //write out the XML file for continuous save
         return;
-}}
-        
-        
-        
-        
-    
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-                        throw new RuntimeException("DBMD: saveRecord : no such student record in data");}}
+      }
+    }
+    throw new RuntimeException("DBMD: saveRecord : no such student record in data");
+  }
+
+}

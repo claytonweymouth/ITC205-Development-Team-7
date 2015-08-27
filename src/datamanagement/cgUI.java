@@ -396,9 +396,9 @@ public class cgUI extends javax.swing.JFrame implements IUnitLister,
 	}
 
 	public void setRecord(IStudentUnitRecord record) {
-		jTextField1.setText(new Float(record.getAsg1()).toString());
-		jTextField2.setText(new Float(record.getAsg2()).toString());
-		jTextField3.setText(new Float(record.getExam()).toString());
+		jTextField1.setText(new Float(record.getAssignmentGrade1()).toString());
+		jTextField2.setText(new Float(record.getAssignmentGrade2()).toString());
+		jTextField3.setText(new Float(record.getExamGrade()).toString());
 		jLabel5.setText("");
 	}
 
