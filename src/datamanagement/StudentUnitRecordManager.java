@@ -66,6 +66,7 @@ public class StudentUnitRecordManager
    *
    * @param Integer object of the Unit Code of the new object
    * @param String object of the Student ID of the new object
+   * @throws RuntimeException
    * @return IStudentUnitRecord conforming object
    */
   private IStudentUnitRecord createStudentUnitRecord( Integer unitCode, String studentId )
@@ -139,6 +140,7 @@ public class StudentUnitRecordManager
    * Saves a record to an XML file
    *
    * @param IStudentUnitRecord conforming object
+   * @throws RuntimeException
    */
   public void saveRecord( IStudentUnitRecord record )
   {
