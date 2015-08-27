@@ -119,7 +119,7 @@ public class StudentUnitRecord implements IStudentUnitRecord {
 
 
 
-  public float getTotalGrade() {
+  public float getTotal() {
     return this.assessmentOneMark_ + this.assessmentTwoMark_ + this.examMark_;
   }
 

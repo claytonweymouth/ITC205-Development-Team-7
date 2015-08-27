@@ -148,7 +148,7 @@ public class StudentUnitRecordManager
       if (record.getStudentID().toString().equals(element.getAttributeValue("sid")) && record.getUnitCode().equals(element.getAttributeValue("uid"))) {
         element.setAttribute("asg1", new Float(record.getAssignmentGrade1()).toString());
         element.setAttribute("asg2", new Float(record.getAssignmentGrade2()).toString());
-        element.setAttribute("exam", new Float(record.getExamGrade()).toString());
+        element.setAttribute("exam", new Float(record.getExam()).toString());
         XmlManager.getInstance().saveDocument(); //write out the XML file for continuous save
         return;
       }

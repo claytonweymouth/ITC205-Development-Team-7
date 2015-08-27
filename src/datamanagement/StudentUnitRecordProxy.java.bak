@@ -32,10 +32,10 @@ public class StudentUnitRecordProxy
    *
    * @return Integer of the current student's ID.
    */
-   public Integer getStudentID()
-   {
-     return studentId_;
-   }
+  public Integer getStudentId()
+  {
+    return studentId_;
+  }
 
 
 
@@ -44,10 +44,10 @@ public class StudentUnitRecordProxy
    *
    * @return String of the current Unit Code
    */
-   public String getUnitCode()
-   {
-     return unitCode_;
-   }
+  public String getUnitCode()
+  {
+    return unitCode_;
+  }
 
 
 
@@ -130,7 +130,7 @@ public class StudentUnitRecordProxy
    */
   public float getTotalGrade()
   {
-    return manager_.getStudentUnitRecord( studentId_, unitCode_ ).getTotalGrade();
+    return manager_.getStudentUnitRecord( studentId_, unitCode_ ).getTotal();
   }
 
 }
