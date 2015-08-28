@@ -3,59 +3,39 @@ package datamanagement;
 import java.util.List;
 import org.jdom.*;
 
-
-
 public class UnitManager {
 
 	private static UnitManager self = null;
-	private UnitMap UnitMap_;
 
-        
-        
-        /**
-         * If unitmap is null, call method unitmanager and return that result of method
-         * @return self 
-         */
-	public static UnitManager UnitMap_() {
+	private UnitMap UM;
+
+	public static UnitManager UM() {
 		if (self == null)
 			self = new UnitManager();
 		return self;
 	}
 
-        
-        
 	private UnitManager() {
-		UnitMap_ = new UnitMap();
+		UM = new UnitMap();
 	}
 
-        
-        
 	public IUnit getUnit(String uc) {
-		IUnit iUnit_ = UnitMap_.get(uc);
-		return iUnit_ != null ? iUnit_ : createUnit(uc);
+		IUnit iu = UM.get(uc);
+		return iu != null ? iu : createUnit(uc);
 
 	}
 
-        
-        /**
-         * 
-         * @param unitCode
-         * @return  iUnit_
-         * @throws RuntimeException
-         */
 	private IUnit createUnit(String unitCode) {
 
-		IUnit iUnit_;
-                /**
-                 * creation of element for unit table
-                 */
+		IUnit iu;
+
 		for (Element el : (List<Element>) XMLManager.getXML().getDocument()
 				.getRootElement().getChild("unitTable").getChildren("unit"))
 			if (unitCode.equals(el.getAttributeValue("uid"))) {
 				StudentUnitRecordList slist;
 
 				slist = null;
-				iUnit_ = new Unit(el.getAttributeValue("uid"),
+				iu = new Unit(el.getAttributeValue("uid"),
 						el.getAttributeValue("name"), Float.valueOf(
 								el.getAttributeValue("ps")).floatValue(), Float
 								.valueOf(el.getAttributeValue("cr"))
@@ -70,33 +50,26 @@ public class UnitManager {
 						Integer.valueOf(el.getAttributeValue("examwgt"))
 								.intValue(), StudentUnitRecordManager
 								.instance().getRecordsByUnit(unitCode));
-				UnitMap_.put(iUnit_.getUnitCode(), iUnit_);
-				return iUnit_;
+				UM.put(iu.getUnitCode(), iu);
+				return iu;
 			}
 
 		throw new RuntimeException("DBMD: createUnit : unit not in file");
 	}
 
-        
-        /**
-         * get units attributes, display within unitmap
-         * @return UnitMap1
-         */
 	public UnitMap getUnits() {
 
-		UnitMap UnitMap1;
-		IUnit iUnit_;
+		UnitMap uM;
+		IUnit iu;
 
-		UnitMap1 = new UnitMap();
+		uM = new UnitMap();
 		for (Element el : (List<Element>) XMLManager.getXML().getDocument()
 				.getRootElement().getChild("unitTable").getChildren("unit")) {
-			iUnit_ = new UnitProxy(el.getAttributeValue("uid"),
+			iu = new UnitProxy(el.getAttributeValue("uid"),
 					el.getAttributeValue("name"));
-			UnitMap1.put(iUnit_.getUnitCode(), iUnit_);
-		} /**
-                 * unit maps are filled with PROXY units
-                 */
-		return UnitMap1;
+			uM.put(iu.getUnitCode(), iu);
+		} // unit maps are filled with PROXY units
+		return uM;
 	}
 
 }
