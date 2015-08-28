@@ -11,20 +11,20 @@ public interface IStudentUnitRecord {
 
     
     
-    public void setAsg1(float mark);
-    public float getAsg1();
+    public void setAssignmentGrade1(float mark);
+    public float getAssignmentGrade1();
 
     
     
-    public void setAsg2(float mark);
-    public float getAsg2();
+    public void setAssignmentGrade2(float mark);
+    public float getAssignmentGrade2();
 
     
     
-    public void setExam(float mark);
-    public float getExam();
+    public void setExamGrade(float mark);
+    public float getExamGrade();
 
     
     
-    public float getTotal();
+    public float getTotalGrade();
 }
