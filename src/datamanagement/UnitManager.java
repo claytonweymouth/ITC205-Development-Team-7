@@ -12,11 +12,11 @@ public class UnitManager {
 
         
         
-        /**
-         * If unitmap is null, call method unitmanager and return that result of method
-         * @return self 
-         */
-	public static UnitManager UnitMap_() {
+	/**
+	 * If unitmap is null, call method unitmanager and return that result of method
+	 * @return self 
+	 */
+	public static UnitManager UM() {
 		if (self == null)
 			self = new UnitManager();
 		return self;
@@ -25,10 +25,10 @@ public class UnitManager {
         
         
 	/**
-         * UnitManager populates UnitMap_ with result of UnitMap 
-         */
-        private UnitManager() {
-		UnitMap_ = new UnitMap();
+	 * UnitManager populates UnitMap_ with result of UnitMap 
+	 */
+	private UnitManager() {
+	  UnitMap_ = new UnitMap();
 	}
 
         
@@ -40,17 +40,17 @@ public class UnitManager {
 	}
 
         
-        /**
-         * 
-         * @param unitCode
-         * @return  iUnit_
-         * @throws RuntimeException
-         */
+	/**
+	 * 
+	 * @param unitCode
+	 * @return  iUnit_
+	 * @throws RuntimeException
+	 */
 	private IUnit createUnit(String unitCode) {
 
 		IUnit iUnit_;
-                  //creation of element for unit table
-		for (Element el : (List<Element>) XMLManager.getXML().getDocument()
+		//creation of element for unit table
+		for (Element el : (List<Element>) XmlManager.getInstance().getDocument()
 				.getRootElement().getChild("unitTable").getChildren("unit"))
 			if (unitCode.equals(el.getAttributeValue("uid"))) {
 				StudentUnitRecordList slist;
@@ -70,7 +70,7 @@ public class UnitManager {
 								el.getAttributeValue("asg2wgt")).intValue(),
 						Integer.valueOf(el.getAttributeValue("examwgt"))
 								.intValue(), StudentUnitRecordManager.getInstance()
-								.instance().getRecordsByUnit(unitCode));
+								.getRecordsByUnit(unitCode));
 				UnitMap_.put(iUnit_.getUnitCode(), iUnit_);
 				return iUnit_;
 			}
@@ -79,17 +79,17 @@ public class UnitManager {
 	}
 
         
-        /**
-         * get units attributes, display within unitmap
-         * @return UnitMap1
-         */
+	/**
+	 * get units attributes, display within unitmap
+	 * @return UnitMap1
+	 */
 	public UnitMap getUnits() {
 
 		UnitMap UnitMap1;
 		IUnit iUnit_;
 
 		UnitMap1 = new UnitMap();
-		for (Element el : (List<Element>) XMLManager.getInstance().getDocument()
+		for (Element el : (List<Element>) XmlManager.getInstance().getDocument()
 				.getRootElement().getChild("unitTable").getChildren("unit")) {
 			iUnit_ = new UnitProxy(el.getAttributeValue("uid"),
 					el.getAttributeValue("name"));

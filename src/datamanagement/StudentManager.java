@@ -38,7 +38,7 @@ public class StudentManager {
     
     
     private Element getStudentElement(Integer id) {
-        for (Element el : (List<Element>) XmlManager.getXML().getDocum_ent().getRootElement().getChild("studentTable").getChildren("student")) 
+        for (Element el : (List<Element>) XmlManager.getInstance().getDocum_ent().getRootElement().getChild("studentTable").getChildren("student")) 
         if (id.toString().equals(el.getAttributeValue("sid"))) 
         return el;
         return null;
