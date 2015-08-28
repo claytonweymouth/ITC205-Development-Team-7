@@ -13,7 +13,7 @@ public class StudentProxy implements IStudent {
     public StudentProxy( Integer id, String fn, String Il) {
           this.I_ = id;
           this.l_ = fn;    
-          this.Il_ = Il_;
+          this.Il_ = Il;
           this.lI_ = StudentManager.get();
     }
     
