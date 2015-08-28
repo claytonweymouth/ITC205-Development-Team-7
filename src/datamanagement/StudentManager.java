@@ -38,7 +38,7 @@ public class StudentManager {
     
     
     private Element getStudentElement(Integer id) {
-        for (Element el : (List<Element>) XMLManager.getXML().getDocum_ent().getRootElement().getChild("studentTable").getChildren("student")) 
+        for (Element el : (List<Element>) XmlManager.getXML().getDocum_ent().getRootElement().getChild("studentTable").getChildren("student")) 
         if (id.toString().equals(el.getAttributeValue("sid"))) 
         return el;
         return null;
@@ -55,7 +55,7 @@ public class StudentManager {
         IStudent is;
         Element el = getStudentElement(id);
         if (el != null) {
-            StudentUnitRecordList rlist = StudentUnitRecordManager.instance().getRecordsByStudent(id);
+            StudentUnitRecordList rlist = StudentUnitRecordManager.getInstance().getRecordsByStudent(id);
         is = new Student(new Integer(el.getAttributeValue("sid")),el.getAttributeValue("fname"),el.getAttributeValue("lname"),rlist);
         sm_.put(is.getID(), is);
         return is; }
@@ -85,7 +85,7 @@ public class StudentManager {
         }
     s_ = new StudentMap();
     IStudent is;
-    StudentUnitRecordList ur = StudentUnitRecordManager.instance().getRecordsByUnit(uc);
+    StudentUnitRecordList ur = StudentUnitRecordManager.getInstance().getRecordsByUnit(uc);
     for (IStudentUnitRecord S : ur) {
             is = createStudentProxy(new Integer(S.getStudentID()));
             s_.put(is.getID(), is);

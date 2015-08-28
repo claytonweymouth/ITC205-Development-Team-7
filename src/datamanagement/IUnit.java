@@ -12,7 +12,7 @@ public interface IUnit {
     
     
     public float getPsCutoff();
-    public void  setPsCutoff1(float cutoff);
+    public void  setPsCutoff(float cutoff);
 
     
     
@@ -21,7 +21,7 @@ public interface IUnit {
 
     
     
-    public float getDiCuttoff();    
+    public float getDiCutoff();    
     public void  setDiCutoff(float cutoff);
 
     

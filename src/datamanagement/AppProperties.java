@@ -2,11 +2,11 @@ package datamanagement;
 /**
  * importing necessary java utilities
  */
-import java.util.*;
-import java.io.*;
+import java.util.Properties;
+import java.io.FileInputStream;
 
 public class AppProperties {
-private static AppProperties self = null;
+private static AppProperties self_ = null;
 private Properties properties_;
 
 
@@ -17,18 +17,23 @@ private Properties properties_;
  * @throws RuntimeException
  */
 public static AppProperties getInstance() {
-	if (self == null ) { self = new AppProperties(); } return self;
+	if (self_ == null ) { self_ = new AppProperties(); } return self_;
 	}
-	private AppProperties() {properties_ = new Properties();
+	/**
+         * properties_ variable populated by result of Properties()
+         */
+        private AppProperties() {properties_ = new Properties();
 		/**
                  * try to load in file Properties.prop, if unable, display error message
                  * 
                  * @param properties_
-                 * @throws RuntimeException
                  */
 		try {properties_.load(new FileInputStream("Properties.prop"));} 
 		catch (IOException e) {throw new RuntimeException("Could not read property file");}
 	}
+        
+        
+        
 	/**
          * return the results
          * @return properties_
