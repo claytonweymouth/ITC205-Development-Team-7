@@ -1,63 +1,67 @@
 package datamanagement;
+
+
+
 public class StudentProxy implements IStudent {
-private Integer I;
-private String l;
+private Integer I_;
+private String l_;
+private String Il_;
+private StudentManager lI_;
 
 
 
-    private String Il;
-    private StudentManager lI;
     public StudentProxy( Integer id, String fn, String Il) {
-        this.I = id;
-        this.l = fn;
-
-        
-        this.Il = Il;
-this.lI = StudentManager.get();}
-
-    public Integer getID() { return I; 
+	this.I_ = id;
+	this.l_ = fn;    
+	this.Il_ = Il_;
+	this.lI_ = StudentManager.get();
+    }
+    
+    
+    
+    public Integer getID() { 
+        return I_; 
+    }
 
     
     
-}
-public String getFirstName() { 
-        return l; }
-
+    public String getFirstName() { 
+        return l_; 
+    }
+    
+    
+    
     public String getLastName() { 
-return Il; 
-}
-public void setFirstName(String firstName) {
-
+    	return Il_; 
+    }
     
     
     
-    lI.getStudent(I).setFirstName(firstName);}
+    public void setFirstName(String firstName) {
+    	lI_.getStudent(I).setFirstName(firstName);
+	}
+    
+    
+    
     public void setLastName(String lastName) {
-        
-        
-        
-        lI.getStudent(I).setLastName(lastName);}
-
+    	lI_.getStudent(I).setLastName(lastName);
+    }
     
     
-        public void addUnitRecord(IStudentUnitRecord record) {
-        lI.getStudent(I).addUnitRecord(record);}
-        public IStudentUnitRecord getUnitRecord(String unitCode) {
-
-            
- 
-            
-            
-            
-            
-            
-                    return lI.getStudent(I).getUnitRecord(unitCode);}
-
-
-        
-  
-        
-        
-        
-        
-                                public StudentUnitRecordList getUnitRecords() { return lI.getStudent(I).getUnitRecords();}}
+    
+    public void addUnitRecord(IStudentUnitRecord record) {
+        lI_.getStudent(I).addUnitRecord(record);
+    }
+    
+    
+    /**
+     * Obtain unit code from student unit record
+     * @param unitCode
+     * @return lI_
+     */
+    public IStudentUnitRecord getUnitRecord(String unitCode) {
+        return lI_.getStudent(I).getUnitRecord(unitCode);}
+    	public StudentUnitRecordList getUnitRecords() { 
+    		return lI_.getStudent(I).getUnitRecords();
+    	}
+}
